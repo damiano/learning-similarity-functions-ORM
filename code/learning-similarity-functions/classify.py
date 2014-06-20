@@ -1,7 +1,13 @@
-###########################################
-#  Usage: python classify.py TRAINED_MODEL_FILE TEST_FEATURES_DIR ADJACENY_MATRIX_OUTPUT_DIR
-#         python classify.py SVM_terms_jaccard.pkl ../../data/features/test ../../data/adjacency_matrix_SVM_terms_jaccard
-###########################################
+#############################################################################################################################
+#   Learning Similarity Functions for Topic Detection in Online Reputation Monitoring
+#   Damiano Spina, Julio Gonzalo, Enrique Amigó. SIGIR'14. 2014
+#
+#   Given a binary classifier (previously trained with the build_SVM.py script) and a pairwise represented dataset, it computes the similarity matrix for each of the given entities/test cases. 
+#   It receives three parameters: the trained model (TRAINED_MODEL_FILE), the dir with the target dataset (TEST_FEATURES_DIR) and the output dir on which the similarity matrices will be written (ADJACENY_MATRIX_OUTPUT_DIR).
+#  
+#   Usage: python classify.py TRAINED_MODEL_FILE TEST_FEATURES_DIR ADJACENY_MATRIX_OUTPUT_DIR
+#          python classify.py SVM_terms_jaccard.pkl ../../data/features/test ../../data/adjacency_matrix_SVM_terms_jaccard
+#############################################################################################################################
 
 import nltk, sys, numpy
 from numpy import array

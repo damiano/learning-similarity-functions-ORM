@@ -1,8 +1,14 @@
-###################################
+################################################################################################################
+#   Learning Similarity Functions for Topic Detection in Online Reputation Monitoring
+#   Damiano Spina, Julio Gonzalo, Enrique Amigó. SIGIR'14. 2014
+#   
+# Builds a SVM binary classifier. The confidence to the "true" class is used as the learned similarity function. 
+#   The Python script receives three arguments: the training sample .tsv file (INPUT_SAMPLE_FILE), the type of model (MODEL TYPE, 'terms_jaccard' or 'all') and the output file where the model will be written (OUTPUT_MODEL_FILE).
+#
 # Usage: python build_SVM.py INPUT_SAMPLE_FILE MODEL_TYPE OUTPUT_MODEL_FILE
 #        python build_SVM.py ../../data/features/training_sample.tsv terms_jaccard SVM_terms_jaccard.pkl
 #        python build_SVM.py ../../data/features/training_sample.tsv all SVM_allfeatures.pkl
-###################################
+#################################################################################################################
 import nltk, sys, numpy
 from numpy import array
 from sklearn.svm import SVC
