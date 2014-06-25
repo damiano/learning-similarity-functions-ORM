@@ -7,6 +7,7 @@
 #  
 #   Usage: python classify.py TRAINED_MODEL_FILE TEST_FEATURES_DIR ADJACENY_MATRIX_OUTPUT_DIR
 #          python classify.py SVM_terms_jaccard.pkl ../../data/features/test ../../data/adjacency_matrix_SVM_terms_jaccard
+#          python classify.py SVM_all_features.pkl ../../data/features/test ../../data/adjacency_matrix_SVM_all_features
 #############################################################################################################################
 
 import nltk, sys, numpy

@@ -3,15 +3,15 @@ require("foreach")
 require("doMC")
 require("fastcluster")
 
-dataset <- "test"
-NUM_CORES <- 15
 
-registerDoMC(NUM_CORES)
-setwd(...) #Set to main dir in your local copy. Example: /home/damiano/data/learning-similarity-functions
+
+registerDoMC(NUM_CORES) #Set the total number of cores to use in parallel (it should be less than the number of cores in your machine -1)
+setwd(PATH_OF_YOUR_LOCAL_COPY) #Set to main dir in your local copy. Example: /home/damiano/data/learning-similarity-functions
 single.features <- c(5,8) #Column indexes in the .tsv file for the subset of features that will be considered for HAC (independently). For instance, index 5 corresponds to terms_jaccard, while index 8 corresponds to semantics_jaccard.
 
-test.dir <- sprintf("../%s/representation", dataset)
-output.dir <- "../../results"
+dataset <- "test"
+test.dir <- sprintf("./data/features/%s", dataset)
+output.dir <- "./data/hac-results"
 
 entity.files <- list.files(test.dir, full.names=T)
 

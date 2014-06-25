@@ -7,7 +7,7 @@
 #
 # Usage: python build_SVM.py INPUT_SAMPLE_FILE MODEL_TYPE OUTPUT_MODEL_FILE
 #        python build_SVM.py ../../data/features/training_sample.tsv terms_jaccard SVM_terms_jaccard.pkl
-#        python build_SVM.py ../../data/features/training_sample.tsv all SVM_allfeatures.pkl
+#        python build_SVM.py ../../data/features/training_sample.tsv all SVM_all_features.pkl
 #################################################################################################################
 import nltk, sys, numpy
 from numpy import array

@@ -4,20 +4,17 @@ require("doMC")
 require("fastcluster")
 
 
-setwd(...) #Set to main dir in your local copy. Example: /home/damiano/data/learning-similarity-functions
-
+registerDoMC(NUM_CORES) ##Set the total number of cores to use in parallel (it should be less than the number of cores in your machine -1)
+setwd(PATH_OF_YOUR_LOCAL_COPY) ##Set to main dir in your local copy. Example: /home/damiano/data/learning-similarity-functions
 dataset <- "test"
-NUM_CORES <- 15
+test.dir <- sprintf("./data/features/%s", dataset)
+output.dir <- "./data/hac-results"
 
-registerDoMC(NUM_CORES)
 
-#SVM(terms_jaccard)
-classifier <- "all"
-
-#SVM(all)
-classifier <- "terms_jaccard"
-
-tables.dir <- sprintf("../%s/adjacency_matrix_%s", dataset, classifier)
+##Uncomment the classifier to use and check the output dir of the learned similarity function:
+#classifier <- "SVM_terms_jaccard" #SVM(terms_jaccard)
+#classifier <- "SVM_all"  #SVM(all features)
+tables.dir <- sprintf("./data/adjacency_matrix_%s", classifier)
 
 
 
