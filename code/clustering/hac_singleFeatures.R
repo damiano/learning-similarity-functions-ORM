@@ -4,10 +4,13 @@ require("doMC")
 require("fastcluster")
 
 
-
+##PARAMETERS TO BE SET:
 registerDoMC(NUM_CORES) #Set the total number of cores to use in parallel (it should be less than the number of cores in your machine -1)
 setwd(PATH_OF_YOUR_LOCAL_COPY) #Set to main dir in your local copy. Example: /home/damiano/data/learning-similarity-functions
-single.features <- c(5,8) #Column indexes in the .tsv file for the subset of features that will be considered for HAC (independently). For instance, index 5 corresponds to terms_jaccard, while index 8 corresponds to semantics_jaccard.
+single.features <- c("terms_jaccard","semantic_jaccard") #Subset of features that will be considered for HAC (independently). Possible features: terms_jaccard, terms_lin_tfidf, terms_lin_cf, semantic_jaccard, semantic_lin_tfidf, semantic_lin_cf,  metadata_author,  metadata_hashtags, metadata_urls, metadata_namedusers, time_millis, time_hours, time_days
+
+
+
 
 dataset <- "test"
 test.dir <- sprintf("./data/features/%s", dataset)
@@ -21,10 +24,11 @@ foreach (j=1:length(entity.files)) %dopar% {
 
   #Read pairwise representation file
   samples <- read.table(file=entity,header=T,sep='\t',comment.char="",quote="\"",colClasses="character")
+  single.features.indices <- unlist(lapply(single.features,function(x) grep(x,colnames(sample))))
   print(entity)
 
   #For each single feature in the subset
-  for(feature.index in single.features) {
+  for(feature.index in single.features.indices) {
     
     feature <- names(samples)[feature.index]
     
@@ -68,7 +72,7 @@ foreach (j=1:length(entity.files)) %dopar% {
       #Write clustering output using RepLab format
       names(result) <- c("entity_id","tweet_id","topic_detection")
       feature.name <- sub("_","-",feature)
-      results.filename <- sprintf("%s/single_features_%s_%s", output.dir, feature.name, quantile)   
+      results.filename <- sprintf("%s/single.features.indices_%s_%s", output.dir, feature.name, quantile)   
       print(sprintf("writing to %s",results.filename))
       write.table(result, file=results.filename, append=T, sep="\t",row.names=FALSE, col.names=FALSE)
     }

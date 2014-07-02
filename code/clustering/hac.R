@@ -3,25 +3,23 @@ require("foreach")
 require("doMC")
 require("fastcluster")
 
-
+##PARAMETERS TO BE SET:
 registerDoMC(NUM_CORES) ##Set the total number of cores to use in parallel (it should be less than the number of cores in your machine -1)
 setwd(PATH_OF_YOUR_LOCAL_COPY) ##Set to main dir in your local copy. Example: /home/damiano/data/learning-similarity-functions
-dataset <- "test"
-test.dir <- sprintf("./data/features/%s", dataset)
-output.dir <- "./data/hac-results"
 
-
-##Uncomment the classifier to use and check the output dir of the learned similarity function:
+##UNCOMMENT the classifier to use and check the output dir of the learned similarity function:
 #classifier <- "SVM_terms_jaccard" #SVM(terms_jaccard)
 #classifier <- "SVM_all"  #SVM(all features)
 tables.dir <- sprintf("./data/adjacency_matrix_%s", classifier)
 
 
+dataset <- "test"
+test.dir <- sprintf("./data/features/%s", dataset)
+output.dir <- "./data/hac-results"
 
 entity.files <- list.files(tables.dir, full.names=T)
-
-
 entities <- c()
+
 foreach (j=1:length(entity.files)) %dopar% {
 
   entity <- entity.files[j]

@@ -65,16 +65,15 @@ Likewise, the parameters have to be manually instantiated inside the R script.
 
 ####[code/evaluation](https://github.com/damiano/learning-similarity-functions-ORM/tree/master/code/evaluation)
 >###removeUnavailableTweets.R
-Normalizes the system outputs, remove those tweets that are not available in the gold standard file (`data/goldstandard/replab2013_topic_detection_goldstandard.dat`)
-It 
+This R script normalizes the system outputs, removing those tweets that are not available in the gold standard file (`data/goldstandard/replab2013_topic_detection_goldstandard.dat`).
 
 >###evaluate.sh
 Bash script that calls the Perl `EVAL_TOPICDETECTION_RS.pl` script to evaluate all the systems in `data/system-outputs` and writes the results in `data/evaluation-results`
 
 >###EVAL_TOPICDETECTION_RS.pl
 
-[Reliability & Sensitivity](http://dl.acm.org/citation.cfm?id=2484081)
-[RepLab 2013 Evaluation Campaign](http://link.springer.com/chapter/10.1007%2F978-3-642-40802-1_31)
+This Perl script computes the official evaluation metrics for the [RepLab 2013 Topic Detection Task](http://link.springer.com/chapter/10.1007%2F978-3-642-40802-1_31): Reliability (R), Sensitivity (S), and the F-Score of R and S.[Reliability & Sensitivity](http://dl.acm.org/citation.cfm?id=2484081).
+
 
 #Data
 
@@ -101,27 +100,29 @@ The gzipped `./data/training_samples.tsv.gz` file contains random samples from t
 
 ##[data/goldstandard](https://github.com/damiano/learning-similarity-functions-ORM/tree/master/data/goldstandard)
 
-The `replab2013_topic_detection_goldstandard.dat` represents the gold standard of the RepLab 2013 Topic Detection Task used to perform the evaluation in this paper.
+The `replab2013_topic_detection_goldstandard.dat` represents the gold standard of the RepLab 2013 Topic Detection Task used to perform the evaluation in this paper. It consists of a tab-separated value file where each row is a tweet and columns are:
+>- __entity_id__: Id of the entity (test case) to which the tweet belongs to.
+>- __tweet_id__: Id of the tweet.
+>- __topic__: Name of the topic where the tweet was manually assigned to.
 
 ##[data/system-outputs](https://github.com/damiano/learning-similarity-functions-ORM/tree/master/data/system-outpus)
 
+This directory contains the output in the RepLab 2013 format of the different topic detection systems (and different cut-offs) proposed on the paper, as well as the official RepLab systems used to compare with.
 
-Topic Detection System Output (RepLab 2013 Format)
+>- terms_jaccard_*: HAC results for different cut-off thresholds when using the terms_jaccard feature as similarity function.
+>- svm_all_*: HAC results for different cut-off thresholds when using the SVM(all features) learned similarity function.
+>- svm_terms_jaccard_*: HAC results for different cut-off thresholds when using the SVM(terms_jaccard) learned similarity function.
 
->- terms_jaccard_*
->- svm_all_*
->- svm_terms_jaccard_*
-
->- best_replab
->- temporal_twitter_LDA
+>- best_replab: Best RepLab 2013 system (equivalent to semantic_jaccard) [Spina et al., 2013](http://nlp.uned.es/~damiano/pdf/replab2013-UNED-ORM.pdf).
+>- temporal_twitter_LDA: Temporal Twitter-LDA system in RepLab 2013 [Spina et al., 2013](http://nlp.uned.es/~damiano/pdf/replab2013-UNED-ORM.pdf).
 
 ##[data/evaluation-results](https://github.com/damiano/learning-similarity-functions-ORM/tree/master/data/evaluation-results)
 
 #Citation
-Please cite the article below if you use this resources in your research:
+Please cite the article below if you use these resources in your research:
 >D.Spina, J.Gonzalo, E. Amig&oacute;  
 >_[Learning Similarity Functions for Topic Detection in Online Reputation Monitoring](http://nlp.uned.es/~damiano/pdf/spina2014learning.pdf)_   
->37th ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR). 2014.   
+>Proceedings of the 37th ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR). 2014.   
 
 
 ##BibTex
