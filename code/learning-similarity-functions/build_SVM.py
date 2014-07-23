@@ -59,25 +59,6 @@ def read_features(fname):
     
     
    
-def worker(entity_filename, output_filename, clf):
-
-        (ids_test, entities_test, features_test, label_test) = read_features(entity_filename)
-        features_test_subset = [ [x[0]] for x in features_test]
-
-        
-        result = zip(ids_test,clf.predict_proba(features_test_subset))
-        
-        print "Result for entity ", entity_filename, " ready. Writing file..."
-        
-        
-        f = file(output_filename, 'w')
-        f.write("x\ty\tvalue\n")
-        for (id,confidence) in result:
-             (x,y) = tuple(id.split("_"))
-             f.write("%s\t%s\t%f\n"%(x,y,confidence[1]))
-        print "Closing file ",output_filename
-        f.close()
-        
 
 def main():
 

@@ -3,11 +3,11 @@
 #   Damiano Spina, Julio Gonzalo, Enrique Amigó. SIGIR'14. 2014
 #
 #   Given a binary classifier (previously trained with the build_SVM.py script) and a pairwise represented dataset, it computes the similarity matrix for each of the given entities/test cases. 
-#   It receives three parameters: the trained model (TRAINED_MODEL_FILE), the dir with the target dataset (TEST_FEATURES_DIR) and the output dir on which the similarity matrices will be written (ADJACENY_MATRIX_OUTPUT_DIR).
+#   It receives three parameters: the trained model (TRAINED_MODEL_FILE), the type of model (MODEL TYPE, 'terms_jaccard' or 'all'), the dir with the target dataset (TEST_FEATURES_DIR) and the output dir on which the similarity matrices will be written (ADJACENY_MATRIX_OUTPUT_DIR).
 #  
-#   Usage: python classify.py TRAINED_MODEL_FILE TEST_FEATURES_DIR ADJACENY_MATRIX_OUTPUT_DIR
-#          python classify.py SVM_terms_jaccard.pkl ../../data/features/test ../../data/adjacency_matrix_SVM_terms_jaccard
-#          python classify.py SVM_all_features.pkl ../../data/features/test ../../data/adjacency_matrix_SVM_all_features
+#   Usage: python classify.py TRAINED_MODEL_FILE MODEL_TYPE TEST_FEATURES_DIR ADJACENY_MATRIX_OUTPUT_DIR
+#          python classify.py SVM_terms_jaccard.pkl terms_jaccard ../../data/features/test ../../data/adjacency_matrix_SVM_terms_jaccard
+#          python classify.py SVM_all_features.pkl all ../../data/features/test ../../data/adjacency_matrix_SVM_all_features
 #############################################################################################################################
 
 import nltk, sys, numpy
@@ -60,11 +60,16 @@ def read_features(fname):
    
 def worker(entity_filename, output_filename, clf):
         (ids_test, entities_test, features_test, label_test) = read_features(entity_filename)
+        
+        
         features_test_subset = [ [x[0]] for x in features_test]
-
         
-        result = zip(ids_test,clf.predict_proba(features_test_subset))
         
+        if (sys.args[2] == "all"):
+                result = zip(ids_test,clf.predict_proba(features_test))
+        else:
+                result = zip(ids_test,clf.predict_proba(features_test_subset))
+ 
         print "Result for entity ", entity_filename, " ready. Writing file..."
        
         f = file(output_filename, 'w')
@@ -86,13 +91,13 @@ def main():
     print "Reading built model..."
     model = joblib.load(sys.argv[1])
     
-    test_dirname = sys.argv[2]
+    test_dirname = sys.argv[3]
     
     p = Pool(15)
     
     for f in listdir(test_dirname):
         test_filename = join(test_dirname,f)
-        test_output_filename = "%s/%s" % (sys.argv[3],f)
+        test_output_filename = "%s/%s" % (sys.argv[4],f)
         p.apply_async(worker,[test_filename,test_output_filename,model])
         
           

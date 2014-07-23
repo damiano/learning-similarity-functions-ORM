@@ -41,11 +41,11 @@ We now describe the usage of each of the scripts in the different `code/*` folde
         python build_SVM.py ../../data/features/training_sample.tsv all SVM_allfeatures.pkl
 
 >###classify.py
-   Given a binary classifier (previously trained by using the `build_SVM.py` script) and a pairwise represented dataset, it computes the similarity matrix for each of the given entities/test cases. It receives three parameters: the trained model (`TRAINED_MODEL_FILE`), the dir with the target dataset (`TEST_FEATURES_DIR`) and the output dir on which the similarity matrices will be written (`ADJACENY_MATRIX_OUTPUT_DIR`).
+   Given a binary classifier (previously trained by using the `build_SVM.py` script) and a pairwise represented dataset, it computes the similarity matrix for each of the given entities/test cases. It receives four parameters: the trained model (`TRAINED_MODEL_FILE`), the type of model (`MODEL TYPE`, __terms_jaccard__ or __all__), the dir with the target dataset (`TEST_FEATURES_DIR`) and the output dir on which the similarity matrices will be written (`ADJACENY_MATRIX_OUTPUT_DIR`).
 
 >__Usage:__   
-        python classify.py TRAINED_MODEL_FILE TEST_FEATURES_DIR ADJACENY_MATRIX_OUTPUT_DIR
-        python classify.py SVM_terms_jaccard.pkl ../../data/features/test ../../data/adjacency_matrix_SVM_terms_jaccard
+        python classify.py TRAINED_MODEL_FILE MODEL_TYPE TEST_FEATURES_DIR ADJACENY_MATRIX_OUTPUT_DIR
+        python classify.py SVM_terms_jaccard.pkl terms_jaccard ../../data/features/test ../../data/adjacency_matrix_SVM_terms_jaccard
 
 
 ###[code/clustering](https://github.com/damiano/learning-similarity-functions-ORM/tree/master/code/clustering)
