@@ -180,7 +180,7 @@ footer {
   width:270px;
   float:left;
   position:fixed;
-  bottom:250px;
+  bottom:50px;
 }
 
 @media print, screen and (max-width: 960px) {
@@ -210,7 +210,9 @@ footer {
   header a small {
     display:inline;
   }
-  
+  header img {
+    height:100px;
+  } 
   header ul {
     position:absolute;
     right:50px;
