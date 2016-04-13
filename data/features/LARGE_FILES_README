@@ -1,7 +1,7 @@
 Due to the big size of the feature representation files (for both training and test datasets), they are allocated outside Github.
 Please download them from:
 
-http://nlp.uned.es/~damiano/datasets/learning-similarity-functions-ORM/data/features/training.tar.gz
-http://nlp.uned.es/~damiano/datasets/learning-similarity-functions-ORM/data/features/test.tar.gz
+http://nlp.uned.es/ORM/data/features/training.tar.gz
+http://nlp.uned.es/ORM/data/features/test.tar.gz
 
 
