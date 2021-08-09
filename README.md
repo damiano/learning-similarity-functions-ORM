@@ -113,15 +113,15 @@ This directory contains the output in the RepLab 2013 format of the different to
 >- svm_all_*: HAC results for different cut-off thresholds when using the SVM(all features) learned similarity function.
 >- svm_terms_jaccard_*: HAC results for different cut-off thresholds when using the SVM(terms_jaccard) learned similarity function.
 
->- best_replab: Best RepLab 2013 system (equivalent to semantic_jaccard) [Spina et al., 2013](http://nlp.uned.es/~damiano/pdf/replab2013-UNED-ORM.pdf).
->- temporal_twitter_LDA: Temporal Twitter-LDA system in RepLab 2013 [Spina et al., 2013](http://nlp.uned.es/~damiano/pdf/replab2013-UNED-ORM.pdf).
+>- best_replab: Best RepLab 2013 system (equivalent to semantic_jaccard) [Spina et al., 2013](https://www.damianospina.com/publication/amigo-2013-overview/).
+>- temporal_twitter_LDA: Temporal Twitter-LDA system in RepLab 2013 [Spina et al., 2013](https://www.damianospina.com/publication/amigo-2013-overview/).
 
 ## [data/evaluation-results](https://github.com/damiano/learning-similarity-functions-ORM/tree/master/data/evaluation-results)
 
 # Citation
 Please cite the article below if you use these resources in your research:
 >D.Spina, J.Gonzalo, E. Amig&oacute;  
->_[Learning Similarity Functions for Topic Detection in Online Reputation Monitoring](http://nlp.uned.es/~damiano/pdf/spina2014learning.pdf)_   
+>_[Learning Similarity Functions for Topic Detection in Online Reputation Monitoring](https://www.damianospina.com/publication/spina-2014-learning/)_   
 >Proceedings of the 37th ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR). 2014.   
 
 
